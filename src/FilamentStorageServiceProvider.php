@@ -1,6 +1,6 @@
 <?php
 
-namespace VendorName\Skeleton;
+namespace Weiwait\FilamentStorage;
 
 use Filament\Support\Assets\AlpineComponent;
 use Filament\Support\Assets\Asset;
@@ -14,14 +14,14 @@ use Livewire\Testing\TestableLivewire;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use VendorName\Skeleton\Commands\SkeletonCommand;
-use VendorName\Skeleton\Testing\TestsSkeleton;
+use Weiwait\FilamentStorage\Commands\FilamentStorageCommand;
+use Weiwait\FilamentStorage\Testing\TestsFilamentStorage;
 
-class SkeletonServiceProvider extends PackageServiceProvider
+class FilamentStorageServiceProvider extends PackageServiceProvider
 {
-    public static string $name = 'skeleton';
+    public static string $name = 'filament-storage';
 
-    public static string $viewNamespace = 'skeleton';
+    public static string $viewNamespace = 'filament-storage';
 
     public function configurePackage(Package $package): void
     {
@@ -37,7 +37,7 @@ class SkeletonServiceProvider extends PackageServiceProvider
                     ->publishConfigFile()
                     ->publishMigrations()
                     ->askToRunMigrations()
-                    ->askToStarRepoOnGitHub(':vendor_slug/:package_slug');
+                    ->askToStarRepoOnGitHub('weiwait/filament-storage');
             });
 
         $configFileName = $package->shortName();
@@ -83,18 +83,18 @@ class SkeletonServiceProvider extends PackageServiceProvider
         if (app()->runningInConsole()) {
             foreach (app(Filesystem::class)->files(__DIR__ . '/../stubs/') as $file) {
                 $this->publishes([
-                    $file->getRealPath() => base_path("stubs/skeleton/{$file->getFilename()}"),
-                ], 'skeleton-stubs');
+                    $file->getRealPath() => base_path("stubs/filament-storage/{$file->getFilename()}"),
+                ], 'filament-storage-stubs');
             }
         }
 
         // Testing
-        TestableLivewire::mixin(new TestsSkeleton());
+        TestableLivewire::mixin(new TestsFilamentStorage());
     }
 
     protected function getAssetPackageName(): ?string
     {
-        return ':vendor_slug/:package_slug';
+        return 'weiwait/filament-storage';
     }
 
     /**
@@ -103,9 +103,9 @@ class SkeletonServiceProvider extends PackageServiceProvider
     protected function getAssets(): array
     {
         return [
-            // AlpineComponent::make('skeleton', __DIR__ . '/../resources/dist/components/skeleton.js'),
-            Css::make('skeleton-styles', __DIR__ . '/../resources/dist/skeleton.css'),
-            Js::make('skeleton-scripts', __DIR__ . '/../resources/dist/skeleton.js'),
+            // AlpineComponent::make('filament-storage', __DIR__ . '/../resources/dist/components/filament-storage.js'),
+            Css::make('filament-storage-styles', __DIR__ . '/../resources/dist/filament-storage.css'),
+            Js::make('filament-storage-scripts', __DIR__ . '/../resources/dist/filament-storage.js'),
         ];
     }
 
@@ -115,7 +115,7 @@ class SkeletonServiceProvider extends PackageServiceProvider
     protected function getCommands(): array
     {
         return [
-            SkeletonCommand::class,
+            FilamentStorageCommand::class,
         ];
     }
 
@@ -149,7 +149,7 @@ class SkeletonServiceProvider extends PackageServiceProvider
     protected function getMigrations(): array
     {
         return [
-            'create_skeleton_table',
+            'create_filament-storage_table',
         ];
     }
 }

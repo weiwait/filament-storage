@@ -1,13 +1,13 @@
 <?php
 
-namespace VendorName\Skeleton\Testing;
+namespace Weiwait\FilamentStorage\Testing;
 
 use Livewire\Testing\TestableLivewire;
 
 /**
  * @mixin TestableLivewire
  */
-class TestsSkeleton
+class TestsFilamentStorage
 {
     //
 }

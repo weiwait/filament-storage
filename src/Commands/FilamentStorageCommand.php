@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace Weiwait\FilamentStorage\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class FilamentStorageCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'filament-storage';
 
     public $description = 'My command';
 
